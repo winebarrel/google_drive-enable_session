@@ -1,4 +1,4 @@
-require "google_drive/enable_session/version"
+require 'google_drive/enable_session/version'
 
 module GoogleDrive
   module EnableSession
