@@ -47,21 +47,29 @@ module GoogleDrive
         yield(storage)
       end
 
-      def with_auth(credential)
+      def login_with_oauth(access_token)
+        session = GoogleDrive.login_with_oauth(access_token)
+        Thread.current[SESSION_KEY] = session
+      end
+
+      def with_session(credential)
         session = Thread.current[SESSION_KEY]
+        session = login_with_oauth(credential.access_token) unless session
+        yield(session)
+      end
 
-        unless session
-          if !credential.access_token
-            fetch_access_token(credential)
-          elsif credential.issued_at + credential.expires_in <= Time.new
-            refresh(credential)
-          end
-
-          session = GoogleDrive.login_with_oauth(credential.access_token)
-          Thread.current[SESSION_KEY] = session
+      def with_auth(credential)
+        if !credential.access_token
+          fetch_access_token(credential)
+          login_with_oauth(credential.access_token)
+        elsif credential.issued_at + credential.expires_in <= Time.new
+          refresh(credential)
+          login_with_oauth(credential.access_token)
         end
 
-        yield(session)
+        with_session(credential) do |session|
+          yield(session)
+        end
       end
 
       def fetch_access_token(credential)
