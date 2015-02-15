@@ -23,7 +23,7 @@ Or install it yourself as:
 ```ruby
 require 'google_drive/enable_session'
 
-#GoogleDrive::EnableSession = '~/google_drive-oauth2.json'
+#GoogleDrive::EnableSession.credential_store_file = '~/google_drive-oauth2.json'
 
 include GoogleDrive::EnableSession
 
