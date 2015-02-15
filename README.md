@@ -28,6 +28,9 @@ require 'google_drive/enable_session'
 include GoogleDrive::EnableSession
 
 enable_session do |session|
-
+  # Gets list of remote files.
+  for file in session.files
+    p file.title
+  end
 end
 ```
