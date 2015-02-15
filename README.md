@@ -1,6 +1,6 @@
 # GoogleDrive::EnableSession
 
-TODO: Write a gem description
+Persist credential for [google-drive-ruby](https://github.com/gimite/google-drive-ruby).
 
 ## Installation
 
@@ -20,12 +20,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'google_drive/enable_session'
 
-## Contributing
+#GoogleDrive::EnableSession = '~/google_drive-oauth2.json'
 
-1. Fork it ( https://github.com/[my-github-username]/google_drive-enable_session/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+include GoogleDrive::EnableSession
+
+enable_session do |session|
+
+end
+```
