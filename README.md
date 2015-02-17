@@ -1,5 +1,9 @@
 # GoogleDrive::EnableSession
 
+# Notice
+**Please use [google_drive-persistent_session](https://github.com/winebarrel/google_drive-persistent_session)!!**
+---
+
 Persist credential for [google-drive-ruby](https://github.com/gimite/google-drive-ruby).
 
 ## Usage
